@@ -1,41 +1,37 @@
-# Google AI Python SDK for the Gemini API
+# Google AI PHP SDK for the Gemini API
 
-[![PyPI version](https://badge.fury.io/py/google-generativeai.svg)](https://badge.fury.io/py/google-generativeai)
-![Python support](https://img.shields.io/pypi/pyversions/google-generativeai)
-![PyPI - Downloads](https://img.shields.io/pypi/dd/google-generativeai)
-
-The Google AI Python SDK is the easiest way for Python developers to build with the Gemini API. The Gemini API gives you access to Gemini [models](https://ai.google.dev/models/gemini) created by [Google DeepMind](https://deepmind.google/technologies/gemini/#introduction). Gemini models are built from the ground up to be multimodal, so you can reason seamlessly across text, images, and code. 
+The Google AI PHP SDK is the easiest way for PHP developers to build with the Gemini API. The Gemini API gives you access to Gemini [models](https://ai.google.dev/models/gemini) created by [Google DeepMind](https://deepmind.google/technologies/gemini/#introduction). Gemini models are built from the ground up to be multimodal, so you can reason seamlessly across text, images, and code.
 
 ## Get started with the Gemini API
 1. Go to [Google AI Studio](https://aistudio.google.com/).
 2. Login with your Google account.
 3. [Create](https://aistudio.google.com/app/apikey) an API key. Note that in Europe the free tier is not available.
-4. Try a Python SDK [quickstart](https://github.com/google-gemini/gemini-api-cookbook/blob/main/quickstarts/Prompting.ipynb) in the [Gemini API Cookbook](https://github.com/google-gemini/gemini-api-cookbook/).
-5. For detailed instructions, try the 
-[Python SDK tutorial](https://ai.google.dev/tutorials/python_quickstart) on [ai.google.dev](https://ai.google.dev).
 
 ## Usage example
-See the [Gemini API Cookbook](https://github.com/google-gemini/gemini-api-cookbook/) or [ai.google.dev](https://ai.google.dev) for complete code.
 
-1. Install from [PyPI](https://pypi.org/project/google-generativeai).
+1. Install via Composer.
 
-`pip install -U google-generativeai`
-
-2. Import the SDK and configure your API key.
-
-```python
-import google.generativeai as genai
-import os
-
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+```bash
+composer require google/generative-ai-php
 ```
 
-3. Create a model and run a prompt.
+2. Use the SDK and configure your API key.
 
-```python
-model = genai.GenerativeModel('gemini-1.5-flash')
-response = model.generate_content("The opposite of hot is")
-print(response.text)
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use Google\GenerativeAI\Core\GenerativeModel;
+
+$config = [
+    'api_key' => getenv('GEMINI_API_KEY'),
+    'model_name' => 'gemini-1.5-flash',
+];
+
+$model = new GenerativeModel($config);
+$response = $model->generateContent("The opposite of hot is");
+echo $response;
 ```
 
 ## Documentation
@@ -44,7 +40,7 @@ See the [Gemini API Cookbook](https://github.com/google-gemini/gemini-api-cookbo
 
 ## Contributing
 
-See [Contributing](https://github.com/google/generative-ai-python/blob/main/CONTRIBUTING.md) for more information on contributing to the Google AI Python SDK.
+See [Contributing](https://github.com/google/generative-ai-php/blob/main/CONTRIBUTING.md) for more information on contributing to the Google AI PHP SDK.
 
 ## License
 
