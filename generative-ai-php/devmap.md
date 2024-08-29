@@ -8,10 +8,10 @@
 
 ## Core Components Translation
 - [ ] Translate GenerativeModel class
-  - [ ] Implement constructor
-  - [ ] Translate generate_content method
-  - [ ] Translate count_tokens method
-  - [ ] Implement start_chat method
+  - [x] Implement constructor
+  - [x] Translate generate_content method
+  - [x] Translate count_tokens method
+  - [x] Implement start_chat method
 - [ ] Translate ChatSession class
   - [ ] Implement constructor
   - [ ] Translate send_message method
