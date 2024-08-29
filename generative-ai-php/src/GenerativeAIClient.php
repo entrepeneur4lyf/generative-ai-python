@@ -22,6 +22,10 @@ class GenerativeModel
 
     public function __construct(array $config)
     {
+        if (empty($config['api_key'])) {
+            throw new GenerativeAIException('API key is required.');
+        }
+
         $this->client = new GenerativeAIClient($config['api_key']);
 
         if (!str_contains($config['model_name'], 'models/')) {
@@ -30,7 +34,6 @@ class GenerativeModel
             $this->name = $config['model_name'];
         }
 
-        // Implement API call to fetch GenerativeModel data
         $this->fetchModelData();
     }
 
@@ -81,14 +84,13 @@ class GenerativeModel
      *
      * @throws GenerativeAIException If there is an error during the content generation.
      */
-    public function generate(
+    public function generateContent(
         string $prompt,
         int $maxTokens = 50,
         float $temperature = 0.7,
         int $topK = 40,
         float $topP = 0.9
     ): string {
-        // Implement the API call to generate content using the generative model
         try {
             $response = $this->client->generateContent($this->name, $prompt, $maxTokens, $temperature, $topK, $topP);
             return $response->getContent();
