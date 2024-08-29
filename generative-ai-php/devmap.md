@@ -33,8 +33,8 @@
 - [x] Implement PHP equivalents for Python-specific operations
 
 ## Error Handling and Exceptions
-- [ ] Create custom exception classes
-- [ ] Implement error handling mechanisms
+- [x] Create custom exception classes
+- [x] Implement error handling mechanisms
 
 ## Configuration and Environment
 - [ ] Implement `configure()` method to set up API keys and client options
