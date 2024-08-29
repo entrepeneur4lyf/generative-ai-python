@@ -37,6 +37,19 @@ class GenerativeModel
         $this->fetchModelData();
     }
 
+    /**
+     * Count the number of tokens in the given input string.
+     *
+     * @param string $input The input string to count tokens for.
+     *
+     * @return int The number of tokens in the input string.
+     */
+    public function countTokens(string $input): int
+    {
+        // Simple tokenization by splitting on spaces
+        return count(explode(' ', trim($input)));
+    }
+
     private function fetchModelData(): void
     {
         // Simulate fetching data from an API
