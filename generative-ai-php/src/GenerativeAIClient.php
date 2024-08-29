@@ -131,9 +131,10 @@ class GenerativeModel
 
 namespace Google\GenerativeAI;
 
-use Google\GenerativeAI\Exceptions\GenerativeAIException;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use Amp\Artax\Client;
+use Amp\Artax\Request;
+use Amp\Promise;
+use function Amp\call;
 
 class ApiClient
 {
@@ -147,23 +148,25 @@ class ApiClient
         }
 
         $this->apiKey = $apiKey;
-        $this->httpClient = new Client([
-            'base_uri' => 'https://api.generativeai.com/',
-            'headers' => [
-                'Authorization' => "Bearer {$this->apiKey}",
-                'Accept' => 'application/json',
-            ],
-        ]);
+        $this->httpClient = new Client();
     }
 
-    public function request(string $method, string $uri, array $options = []): array
+    public function request(string $method, string $uri, array $options = []): Promise
     {
-        try {
-            $response = $this->httpClient->request($method, $uri, $options);
-            return json_decode($response->getBody()->getContents(), true);
-        } catch (GuzzleException $e) {
-            throw new GenerativeAIException('API request error: ' . $e->getMessage());
-        }
+        return call(function () use ($method, $uri, $options) {
+            $request = (new Request("https://api.generativeai.com/{$uri}", $method))
+                ->withHeader('Authorization', "Bearer {$this->apiKey}")
+                ->withHeader('Accept', 'application/json');
+
+            foreach ($options as $key => $value) {
+                $request = $request->withHeader($key, $value);
+            }
+
+            $response = yield $this->httpClient->request($request);
+            $body = yield $response->getBody();
+
+            return json_decode($body, true);
+        });
     }
 }
 
