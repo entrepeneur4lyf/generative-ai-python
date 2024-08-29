@@ -1,0 +1,14 @@
+{
+    "name": "your-vendor/generative-ai-php",
+    "description": "A PHP client for the Generative AI API",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GenerativeAI\\": "src/"
+        }
+    }
+}
