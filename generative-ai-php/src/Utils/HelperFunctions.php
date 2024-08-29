@@ -91,3 +91,29 @@ class HelperFunctions
         return $schema;
     }
 }
+<?php
+
+declare(strict_types=1);
+
+namespace Google\GenerativeAI\Utils;
+
+use Google\GenerativeAI\Exceptions\InvalidArgumentException;
+
+class HelperFunctions
+{
+    // Existing methods...
+
+    /**
+     * Validate input data.
+     *
+     * @param mixed $data The data to validate.
+     *
+     * @throws InvalidArgumentException If the data is invalid.
+     */
+    public static function validateData($data): void
+    {
+        if (empty($data)) {
+            throw new InvalidArgumentException('Data cannot be empty.');
+        }
+    }
+}

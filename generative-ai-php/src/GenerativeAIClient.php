@@ -7,6 +7,9 @@ namespace Google\GenerativeAI\Core;
 use Google\GenerativeAI\Core\ChatSession;
 
 use Google\GenerativeAI\Exceptions\GenerativeAIException;
+use Google\GenerativeAI\Exceptions\InvalidArgumentException;
+use Google\GenerativeAI\Exceptions\ApiException;
+use Google\GenerativeAI\Exceptions\ConfigurationException;
 use Google\GenerativeAI\GenerativeAIClient;
 use Google\Protobuf\Any;
 use Google\Protobuf\Duration;

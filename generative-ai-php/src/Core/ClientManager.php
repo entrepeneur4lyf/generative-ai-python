@@ -6,6 +6,9 @@ namespace Google\GenerativeAI\Core;
 
 use Google\GenerativeAI\GenerativeAIClient;
 use Google\GenerativeAI\Exceptions\GenerativeAIException;
+use Google\GenerativeAI\Exceptions\InvalidArgumentException;
+use Google\GenerativeAI\Exceptions\ApiException;
+use Google\GenerativeAI\Exceptions\ConfigurationException;
 
 class ClientManager
 {
