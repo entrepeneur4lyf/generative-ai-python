@@ -159,4 +159,44 @@ final class GenerativeModelTest extends TestCase
         $chatSession = $this->model->startChat();
         $this->assertInstanceOf(ChatSession::class, $chatSession);
     }
+}<?php
+
+declare(strict_types=1);
+
+namespace Google\GenerativeAI;
+
+use Google\GenerativeAI\Exceptions\GenerativeAIException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+
+class ApiClient
+{
+    private Client $httpClient;
+    private string $apiKey;
+
+    public function __construct(string $apiKey)
+    {
+        if (empty($apiKey)) {
+            throw new GenerativeAIException('API key is required.');
+        }
+
+        $this->apiKey = $apiKey;
+        $this->httpClient = new Client([
+            'base_uri' => 'https://api.generativeai.com/',
+            'headers' => [
+                'Authorization' => "Bearer {$this->apiKey}",
+                'Accept' => 'application/json',
+            ],
+        ]);
+    }
+
+    public function request(string $method, string $uri, array $options = []): array
+    {
+        try {
+            $response = $this->httpClient->request($method, $uri, $options);
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (GuzzleException $e) {
+            throw new GenerativeAIException('API request error: ' . $e->getMessage());
+        }
+    }
 }
