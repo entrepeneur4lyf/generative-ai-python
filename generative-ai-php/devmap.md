@@ -13,9 +13,9 @@
   - [x] Translate count_tokens method
   - [x] Implement start_chat method
 - [ ] Translate ChatSession class
-  - [ ] Implement constructor
-  - [ ] Translate send_message method
-  - [ ] Implement other helper methods
+  - [x] Implement constructor
+  - [x] Translate send_message method
+  - [x] Implement other helper methods
 
 ## API Client Translation
 - [ ] Create PHP client for API interactions
