@@ -7,12 +7,12 @@
 - [x] Set up PHPUnit for testing
 
 ## Core Components Translation
-- [ ] Translate GenerativeModel class
+- [x] Translate GenerativeModel class
   - [x] Implement constructor
   - [x] Translate generate_content method
   - [x] Translate count_tokens method
   - [x] Implement start_chat method
-- [ ] Translate ChatSession class
+- [x] Translate ChatSession class
   - [x] Implement constructor
   - [x] Translate send_message method
   - [x] Implement other helper methods
@@ -42,19 +42,19 @@
 - [ ] Handle environment variables and API keys
 
 ## Client Management
-- [ ] Implement client management similar to `_ClientManager` in Python
-- [ ] Handle default client configuration and instantiation
+- [x] Implement client management similar to `_ClientManager` in Python
+- [x] Handle default client configuration and instantiation
 
 ## Protos and Serialization
-- [ ] Implement serialization and deserialization of protos
-- [ ] Handle conversion between PHP arrays and protos
+- [x] Implement serialization and deserialization of protos
+- [x] Handle conversion between PHP arrays and protos
 
 ## Error Handling
-- [ ] Implement error handling similar to Python's exception classes
-- [ ] Translate Python exceptions to PHP exceptions
+- [x] Implement error handling similar to Python's exception classes
+- [x] Translate Python exceptions to PHP exceptions
 
 ## Utility Functions
-- [ ] Translate utility functions like `flatten_update_paths` to PHP
+- [x] Translate utility functions like `flatten_update_paths` to PHP
 
 ## Testing
 - [ ] Set up PHPUnit test suite
