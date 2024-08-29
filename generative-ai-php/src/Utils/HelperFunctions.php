@@ -27,4 +27,35 @@ class HelperFunctions
         }
         return $newUpdates;
     }
+    /**
+     * Generate a unique session ID.
+     *
+     * @return string The generated session ID.
+     */
+    public static function generateSessionId(): string
+    {
+        return bin2hex(random_bytes(16));
+    }
+
+    /**
+     * Generate a unique message ID.
+     *
+     * @return string The generated message ID.
+     */
+    public static function generateMessageId(): string
+    {
+        return bin2hex(random_bytes(16));
+    }
+
+    /**
+     * Format the chat history into a readable string.
+     *
+     * @param array $history The chat history to format.
+     *
+     * @return string The formatted chat history.
+     */
+    public static function formatChatHistory(array $history): string
+    {
+        return implode("\n", $history);
+    }
 }
