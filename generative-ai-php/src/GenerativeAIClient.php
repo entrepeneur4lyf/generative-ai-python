@@ -126,43 +126,6 @@ class GenerativeModel
 
 }
 
-use PHPUnit\Framework\TestCase;
-use Google\GenerativeAI\Core\GenerativeModel;
-
-final class GenerativeModelTest extends TestCase
-{
-    private GenerativeModel $model;
-
-    protected function setUp(): void
-    {
-        $config = [
-            'api_key' => 'test_api_key',
-            'model_name' => 'test_model',
-        ];
-        $this->model = new GenerativeModel($config);
-    }
-
-    public function testGenerateContent(): void
-    {
-        $response = $this->model->generate('Hello, world!');
-        $this->assertIsString($response);
-    }
-
-    public function testCountTokens(): void
-    {
-        $tokenCount = $this->model->countTokens('Hello, world!');
-        $this->assertIsInt($tokenCount);
-    }
-
-    public function testStartChat(): void
-    {
-        $chatSession = $this->model->startChat();
-        $this->assertInstanceOf(ChatSession::class, $chatSession);
-    }
-}<?php
-
-declare(strict_types=1);
-
 namespace Google\GenerativeAI;
 
 use Google\GenerativeAI\Exceptions\GenerativeAIException;
@@ -198,5 +161,40 @@ class ApiClient
         } catch (GuzzleException $e) {
             throw new GenerativeAIException('API request error: ' . $e->getMessage());
         }
+    }
+}
+
+use PHPUnit\Framework\TestCase;
+use Google\GenerativeAI\Core\GenerativeModel;
+
+final class GenerativeModelTest extends TestCase
+{
+    private GenerativeModel $model;
+
+    protected function setUp(): void
+    {
+        $config = [
+            'api_key' => 'test_api_key',
+            'model_name' => 'test_model',
+        ];
+        $this->model = new GenerativeModel($config);
+    }
+
+    public function testGenerateContent(): void
+    {
+        $response = $this->model->generate('Hello, world!');
+        $this->assertIsString($response);
+    }
+
+    public function testCountTokens(): void
+    {
+        $tokenCount = $this->model->countTokens('Hello, world!');
+        $this->assertIsInt($tokenCount);
+    }
+
+    public function testStartChat(): void
+    {
+        $chatSession = $this->model->startChat();
+        $this->assertInstanceOf(ChatSession::class, $chatSession);
     }
 }
