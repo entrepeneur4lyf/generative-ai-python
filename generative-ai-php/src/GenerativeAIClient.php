@@ -131,14 +131,15 @@ class GenerativeModel
 
 namespace Google\GenerativeAI;
 
-use Amp\Artax\Client;
-use Amp\Artax\Request;
+use Amp\Http\Client\HttpClientBuilder;
+use Amp\Http\Client\Request;
+use Amp\Http\Client\Response;
 use Amp\Promise;
 use function Amp\call;
 
 class ApiClient
 {
-    private Client $httpClient;
+    private \Amp\Http\Client\HttpClient $httpClient;
     private string $apiKey;
 
     public function __construct(string $apiKey)
@@ -148,22 +149,23 @@ class ApiClient
         }
 
         $this->apiKey = $apiKey;
-        $this->httpClient = new Client();
+        $this->httpClient = HttpClientBuilder::buildDefault();
     }
 
     public function request(string $method, string $uri, array $options = []): Promise
     {
         return call(function () use ($method, $uri, $options) {
-            $request = (new Request("https://api.generativeai.com/{$uri}", $method))
-                ->withHeader('Authorization', "Bearer {$this->apiKey}")
-                ->withHeader('Accept', 'application/json');
+            $request = new Request("https://api.generativeai.com/{$uri}", $method);
+            $request->setHeader('Authorization', "Bearer {$this->apiKey}");
+            $request->setHeader('Accept', 'application/json');
 
             foreach ($options as $key => $value) {
-                $request = $request->withHeader($key, $value);
+                $request->setHeader($key, $value);
             }
 
+            /** @var Response $response */
             $response = yield $this->httpClient->request($request);
-            $body = yield $response->getBody();
+            $body = yield $response->getBody()->buffer();
 
             return json_decode($body, true);
         });
