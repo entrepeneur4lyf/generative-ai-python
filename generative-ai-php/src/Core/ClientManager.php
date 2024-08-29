@@ -18,13 +18,27 @@ class ClientManager
      *
      * @throws GenerativeAIException If the API key is not provided.
      */
-    public static function configure(string $apiKey = null): void
+    /**
+     * Configure the default client with the given API key.
+     *
+     * @param string|null $apiKey The API key to use for authentication.
+     *
+     * @throws GenerativeAIException If the API key is not provided.
+     */
+    public static function configure(?string $apiKey = null): void
     {
         if (self::$client === null) {
             self::$client = new GenerativeAIClient($apiKey);
         }
     }
 
+    /**
+     * Get the default client instance.
+     *
+     * @return GenerativeAIClient The default client instance.
+     *
+     * @throws GenerativeAIException If the client is not configured.
+     */
     /**
      * Get the default client instance.
      *

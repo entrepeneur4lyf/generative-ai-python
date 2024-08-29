@@ -11,12 +11,26 @@ class ChatSession
     private GenerativeModel $model;
     private array $history;
 
+    /**
+     * ChatSession constructor.
+     *
+     * @param GenerativeModel $model The generative model to use for the chat session.
+     */
     public function __construct(GenerativeModel $model)
     {
         $this->model = $model;
         $this->history = [];
     }
 
+    /**
+     * Send a message in the chat session and receive a response.
+     *
+     * @param string $message The message to send.
+     *
+     * @return string The response from the model.
+     *
+     * @throws GenerativeAIException If there is an error during message sending.
+     */
     /**
      * Send a message in the chat session and receive a response.
      *
@@ -38,6 +52,11 @@ class ChatSession
         }
     }
 
+    /**
+     * Get the chat history.
+     *
+     * @return array The chat history.
+     */
     /**
      * Get the chat history.
      *
