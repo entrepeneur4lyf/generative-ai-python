@@ -91,9 +91,6 @@ class HelperFunctions
         return $schema;
     }
 }
-<?php
-
-declare(strict_types=1);
 
 namespace Google\GenerativeAI\Utils;
 
