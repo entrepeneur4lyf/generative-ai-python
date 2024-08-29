@@ -86,10 +86,73 @@ class CachedContent
         )";
     }
 
-    // TODO: Implement other methods from the Python SDK, such as:
-    // - create()
-    // - get()
-    // - list()
-    // - delete()
-    // - update()
+    /**
+     * Count tokens in the given prompt using the generative model.
+     *
+     * @param string $prompt The input prompt for token counting.
+     *
+     * @return int The number of tokens in the prompt.
+     *
+     * @throws GenerativeAIException If there is an error during the token counting.
+     */
+    public function countTokens(string $prompt): int
+    {
+        // Implement the API call to count tokens using the generative model
+        try {
+            $response = $this->client->countTokens($this->name, $prompt);
+            return $response->getTokenCount();
+        } catch (\Exception $e) {
+            throw new GenerativeAIException('Error counting tokens: ' . $e->getMessage());
+        }
+    }
+}
+<?php
+
+declare(strict_types=1);
+
+namespace Google\GenerativeAI\Core;
+
+use Google\GenerativeAI\Exceptions\GenerativeAIException;
+
+class ChatSession
+{
+    private GenerativeModel $model;
+    private array $history;
+
+    public function __construct(GenerativeModel $model)
+    {
+        $this->model = $model;
+        $this->history = [];
+    }
+
+    /**
+     * Send a message in the chat session and receive a response.
+     *
+     * @param string $message The message to send.
+     *
+     * @return string The response from the model.
+     *
+     * @throws GenerativeAIException If there is an error during message sending.
+     */
+    public function sendMessage(string $message): string
+    {
+        $this->history[] = $message;
+        try {
+            $response = $this->model->generate($message);
+            $this->history[] = $response;
+            return $response;
+        } catch (GenerativeAIException $e) {
+            throw new GenerativeAIException('Error sending message: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Get the chat history.
+     *
+     * @return array The chat history.
+     */
+    public function getHistory(): array
+    {
+        return $this->history;
+    }
 }

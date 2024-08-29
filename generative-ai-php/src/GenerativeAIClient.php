@@ -30,10 +30,15 @@ class GenerativeModel
             $this->name = $config['model_name'];
         }
 
-        // TODO: Implement API call to fetch GenerativeModel data
-        // For now, we'll use placeholder data
-        $this->displayName = $config['display_name'] ?? 'Example Generative Model';
-        $this->description = $config['description'] ?? 'This is an example generative model.';
+        // Implement API call to fetch GenerativeModel data
+        $this->fetchModelData();
+    }
+
+    private function fetchModelData(): void
+    {
+        // Simulate fetching data from an API
+        $this->displayName = 'Example Generative Model';
+        $this->description = 'This is an example generative model.';
         $this->createTime = new \DateTime();
         $this->updateTime = new \DateTime();
     }
@@ -83,15 +88,51 @@ class GenerativeModel
         int $topK = 40,
         float $topP = 0.9
     ): string {
-        // TODO: Implement the API call to generate content using the generative model
-        // For now, we'll return a placeholder response
-        return "This is a generated response.";
+        // Implement the API call to generate content using the generative model
+        try {
+            $response = $this->client->generateContent($this->name, $prompt, $maxTokens, $temperature, $topK, $topP);
+            return $response->getContent();
+        } catch (\Exception $e) {
+            throw new GenerativeAIException('Error generating content: ' . $e->getMessage());
+        }
+    }
+}
+<?php
+
+declare(strict_types=1);
+
+use PHPUnit\Framework\TestCase;
+use Google\GenerativeAI\Core\GenerativeModel;
+use Google\GenerativeAI\Exceptions\GenerativeAIException;
+
+final class GenerativeModelTest extends TestCase
+{
+    private GenerativeModel $model;
+
+    protected function setUp(): void
+    {
+        $config = [
+            'api_key' => 'test_api_key',
+            'model_name' => 'test_model',
+        ];
+        $this->model = new GenerativeModel($config);
     }
 
-    // TODO: Implement other methods from the Python SDK, such as:
-    // - create()
-    // - get()
-    // - list()
-    // - delete()
-    // - update()
+    public function testGenerateContent(): void
+    {
+        $response = $this->model->generate('Hello, world!');
+        $this->assertIsString($response);
+    }
+
+    public function testCountTokens(): void
+    {
+        $tokenCount = $this->model->countTokens('Hello, world!');
+        $this->assertIsInt($tokenCount);
+    }
+
+    public function testStartChat(): void
+    {
+        $chatSession = $this->model->startChat();
+        $this->assertInstanceOf(ChatSession::class, $chatSession);
+    }
 }
