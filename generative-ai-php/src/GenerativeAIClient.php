@@ -23,11 +23,6 @@ class GenerativeAIClient
 
     // Add methods to interact with the Generative AI API here
 }
-<?php
-
-namespace GenerativeAI;
-
-use GuzzleHttp\Client;
 
 class GenerativeAIClient
 {
