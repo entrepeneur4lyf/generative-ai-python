@@ -58,4 +58,36 @@ class HelperFunctions
     {
         return implode("\n", $history);
     }
+
+    /**
+     * Rename schema fields for compatibility.
+     *
+     * @param array $schema The schema to rename fields for.
+     *
+     * @return array The schema with renamed fields.
+     */
+    public static function renameSchemaFields(array $schema): array
+    {
+        if (isset($schema['type'])) {
+            $schema['type_'] = $schema['type'];
+            unset($schema['type']);
+        }
+
+        if (isset($schema['format'])) {
+            $schema['format_'] = $schema['format'];
+            unset($schema['format']);
+        }
+
+        if (isset($schema['items'])) {
+            $schema['items'] = self::renameSchemaFields($schema['items']);
+        }
+
+        if (isset($schema['properties'])) {
+            foreach ($schema['properties'] as $key => $value) {
+                $schema['properties'][$key] = self::renameSchemaFields($value);
+            }
+        }
+
+        return $schema;
+    }
 }

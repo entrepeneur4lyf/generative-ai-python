@@ -29,8 +29,8 @@
 - [x] Implement PHPDoc comments for better IDE support
 
 ## Utility Functions Translation
-- [ ] Translate helper functions from Python to PHP
-- [ ] Implement PHP equivalents for Python-specific operations
+- [x] Translate helper functions from Python to PHP
+- [x] Implement PHP equivalents for Python-specific operations
 
 ## Error Handling and Exceptions
 - [ ] Create custom exception classes
