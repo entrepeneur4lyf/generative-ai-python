@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Google\GenerativeAI\Core;
 
+use Google\GenerativeAI\Core\ChatSession;
+
 use Google\GenerativeAI\Exceptions\GenerativeAIException;
 use Google\GenerativeAI\GenerativeAIClient;
 use Google\Protobuf\Any;
