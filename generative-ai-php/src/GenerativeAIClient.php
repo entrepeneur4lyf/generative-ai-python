@@ -97,13 +97,9 @@ class GenerativeModel
         }
     }
 }
-<?php
-
-declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 use Google\GenerativeAI\Core\GenerativeModel;
-use Google\GenerativeAI\Exceptions\GenerativeAIException;
 
 final class GenerativeModelTest extends TestCase
 {
