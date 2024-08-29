@@ -20,19 +20,20 @@ class GenerativeModel
     private \DateTime $createTime;
     private \DateTime $updateTime;
 
-    public function __construct(GenerativeAIClient $client, string $name)
+    public function __construct(array $config)
     {
-        $this->client = $client;
+        $this->client = new GenerativeAIClient($config['api_key']);
 
-        if (!str_contains($name, 'models/')) {
-            $name = 'models/' . $name;
+        if (!str_contains($config['model_name'], 'models/')) {
+            $this->name = 'models/' . $config['model_name'];
+        } else {
+            $this->name = $config['model_name'];
         }
 
         // TODO: Implement API call to fetch GenerativeModel data
         // For now, we'll use placeholder data
-        $this->name = $name;
-        $this->displayName = 'Example Generative Model';
-        $this->description = 'This is an example generative model.';
+        $this->displayName = $config['display_name'] ?? 'Example Generative Model';
+        $this->description = $config['description'] ?? 'This is an example generative model.';
         $this->createTime = new \DateTime();
         $this->updateTime = new \DateTime();
     }
