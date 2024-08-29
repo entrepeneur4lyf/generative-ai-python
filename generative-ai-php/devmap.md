@@ -2,7 +2,7 @@
 
 ## Project Setup
 - [x] Initialize PHP project structure
-- [ ] Set up Composer for dependency management
+- [x] Set up Composer for dependency management
 - [ ] Configure PHP 8.3 environment
 - [ ] Set up PHPUnit for testing
 
