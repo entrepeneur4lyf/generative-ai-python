@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Google\GenerativeAI\Types;
+namespace Google\GenerativeAI;
 
 /**
  * Class ApiRequest

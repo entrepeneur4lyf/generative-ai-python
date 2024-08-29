@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Google\GenerativeAI\Exceptions;
+namespace Google\GenerativeAI;
 
 use Exception;
 

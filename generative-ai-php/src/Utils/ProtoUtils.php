@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Google\GenerativeAI\Utils;
+namespace Google\GenerativeAI;
 
 use Google\Protobuf\Internal\Message;
 

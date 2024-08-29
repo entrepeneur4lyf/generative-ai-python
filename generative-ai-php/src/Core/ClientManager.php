@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Google\GenerativeAI\Core;
+namespace Google\GenerativeAI;
 
 use Google\GenerativeAI\GenerativeAIClient;
 use Google\GenerativeAI\Exceptions\GenerativeAIException;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Google\GenerativeAI\Utils;
+namespace Google\GenerativeAI;
 
 class HelperFunctions
 {
