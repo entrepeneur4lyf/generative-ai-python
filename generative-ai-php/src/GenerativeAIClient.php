@@ -113,6 +113,17 @@ class GenerativeModel
             throw new GenerativeAIException('Error generating content: ' . $e->getMessage());
         }
     }
+
+    /**
+     * Start a new chat session.
+     *
+     * @return ChatSession The new chat session.
+     */
+    public function startChat(): ChatSession
+    {
+        return new ChatSession($this);
+    }
+
 }
 
 use PHPUnit\Framework\TestCase;
@@ -149,12 +160,3 @@ final class GenerativeModelTest extends TestCase
         $this->assertInstanceOf(ChatSession::class, $chatSession);
     }
 }
-    /**
-     * Start a new chat session.
-     *
-     * @return ChatSession The new chat session.
-     */
-    public function startChat(): ChatSession
-    {
-        return new ChatSession($this);
-    }
